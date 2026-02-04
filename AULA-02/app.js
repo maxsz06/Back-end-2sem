@@ -57,6 +57,17 @@
 
 */
 
+/*
+        Conversãoes de tipods de dados
+
+        parseInt() -> Permite converter um número para INTERO
+        parseFloat()-> Permite converter uma String para número DECIMAL
+        Number ()-> Permite converter uma String para número (INTERO OU DECIMAL)
+        String()-> Permite converter um conteúdo para String
+        Boolean ()-> Permite converter um conteúdo para booleano
+        typeoff() -> Permite vereficar um tipo de dados de uma 
+*/
+
 //Import da biblioteca
 const readline = require('readline')
 
@@ -83,35 +94,42 @@ entradaDeDados.question('Digite o nome do aluno: ', function (nome) {
              entradaDeDados.question('Digite a nota 4: ', function (valor4) {
                     let nota4 = valor4                                  //Valor recebe nota 4
 
-                
-                    if(nomeAluno == '' ||  nota1==''|| nota2 =='' || nota3 =='' || nota4==""){
+            
 
+                    //Validação de entrada vazia
+                    if(nomeAluno == '' ||  nota1==''|| nota2 =='' || nota3 =='' || nota4==""){
                         console.log('ERRO: É obrigatorio o preenchimento')
 
-                    }else if  (nota1 >100 || nota2 >100 || nota3 >100 || nota4 >100 || nota1 <0 || nota2 <0 || nota3 <0 || nota4 <0) 
-                              {  
-                                console.log('erro:Não pode ser maior que 100')
+                    // Limitação de valores            
+                    }else if  (nota1 > 100 || nota2 > 100 || nota3 > 100 || nota4 > 100 || nota1 < 0 || nota2 < 0 || nota3 < 0 || nota4 < 0){
+                        console.log('erro:Só é permitido  a entrada de valores entre 0 e 100')
 
+                    // Validação de entrada com letras
+                    //isNan()-> permite validar ser o conteudo da variavel tem algum caracter ao invés de um número    
+                    }else if (isNaN(nota1)|| isNaN(nota2) || isNaN(nota3) || isNaN(nota4)){ // A função retorna true ou false 
+                        console.log('Não é possivel calcular a média do aluno com letras')
+                    
                     }else{
-
+                     
+                        let statusAluno    
+                            //Calculo da média
                         let somatoria = (Number(valor1)+Number(valor2)+Number(valor3)+Number(valor4))
                         let resultado = (Number (somatoria) / 4)
-                        console.log('A media do aluno é:'+ resultado)
+                            // Validação do Status de aprovação 
+                         if(resultado >= 70){
+                        statusAluno = 'Aprovado' 
+                         }else if(resultado >=50 && resultado <70){
+                        statusAluno = 'Recuperação'
+                         }else if(resultado<50){
+                        statusAluno = 'Reprovado'
+                         }
 
+                    console.log('Aluno(a): '+ nomeAluno +'Média: '+ resultado)
+                    console.log(statusAluno)
+                    
                     }
-
-
-
-
-
-
-
                 })
             })
         })
     })
-
-
-
-
 })
