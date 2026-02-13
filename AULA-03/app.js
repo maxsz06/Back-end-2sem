@@ -35,7 +35,7 @@ entradaDeDados.question('Digite o Nome do cliente: ', function (setNome) {
                     //Import da biblioteca que realiza calculos 
                     let calculos = require('./modulo/calculos.js')
 
-                    // calculos.calcular "Muito importante para Fazer a importação de outra função para obter a biblioteca"
+                    // calculos.calcular "Muito importante para Fazer a importação de outra função para obter a bibliotecaS"
                     let montante = calculos.calcularJurosCompostos(capitalProduto, taxaCompra, setTempo)
 
                     if (montante){   
