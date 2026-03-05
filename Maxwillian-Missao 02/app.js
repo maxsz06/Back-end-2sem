@@ -16,7 +16,6 @@ const entradaDeDados = readLine.createInterface({
 
 })
 
-
 entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
     let valorUm = setValorUm
 
@@ -24,8 +23,6 @@ entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
         let valorDois = setValorDois
 
         let tratamento = require('./model/tratamento.js')
-        let tratarPontos = tratamento.validarPontos(setValorUm, setValorDois)
-        let tratar = tratamento.tratarValores(setValorUm, setValorDois)
 
         console.log('Qual Operação você deseja realizar?')
         console.log('---[SOMA - 1 ]---')
@@ -38,7 +35,6 @@ entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
             escolhaUser = Number(escolhaUser)
 
             let tratamento = require('./model/tratamento.js')
-            let tratar = tratamento.tratarValores(valorUm, valorDois)
 
             let realizarOperacao = require('./model/calculos.js')
 
@@ -51,7 +47,6 @@ entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
                 console.log('O resultado da soma é: ' + soma.toFixed(2))
                 console.log('===================')
 
-
             } else if (escolhaUser == 2) { // calculo subtração
 
                 let subtracao = realizarOperacao.calcularSubtracao(valorUm, valorDois)
@@ -62,7 +57,6 @@ entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
                 console.log('O resultado da diferença é: ' + subtracao.toFixed(2))
                 console.log('===================')
 
-
             } else if (escolhaUser == 3) { // calculo multiplicacao
 
                 let multiplicacao = realizarOperacao.calcularMultplicacao(valorUm, valorDois)
@@ -72,7 +66,6 @@ entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
                 console.log('O seu Fator Dois: ' + valorDois)
                 console.log('O resultado do Produto é: ' + multiplicacao.toFixed(2))
                 console.log('===================')
-
 
             } else if (escolhaUser == 4) { // calcular divisão
 
@@ -85,7 +78,6 @@ entradaDeDados.question('Digite o seu Valor 1: ', function (setValorUm) {
                 console.log('===================')
 
             }
-
 
         })//Fechamento Tres
     })//Fechamento Dois

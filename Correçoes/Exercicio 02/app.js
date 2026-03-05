@@ -5,3 +5,9 @@
  * Versão: 1.0
  *****************************************************************************/
 
+const calculosMatematicos = require('./modulo/calcular.js')
+
+let resposta = calculosMatematicos.calcular(10,60,'multiplicar')
+
+
+console.log(resposta)
