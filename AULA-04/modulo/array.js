@@ -118,8 +118,12 @@ const manipularDados = function(){
     listaDeFornecedores.shift() //  Permite remite remover elementos do Inicio da lista (Primeiro da lista)
     console.table(listaDeFornecedores)
 
-    listaDeFornecedores.splice(2,1) // Permite remover um elemento baseado no indice da lista
+    listaDeFornecedores.splice(2,1) //Splice()-> Permite remover um elemento baseado no indice da lista
     //splice(indice,qtd de elementos)
+    console.table(listaDeFornecedores)
+
+    listaDeFornecedores.splice(2,0,'Carlos da Silva')//Splice()-> Permite adicionar um novo elemento em um determinado lugar do array (indice)
+                            //Indice, 0 -> Siginifica que não sera removido ninguem, Novo conteúdo
     console.table(listaDeFornecedores)
 
 
@@ -154,7 +158,7 @@ const vereficarItem = function(nome){
     
 }
 
-const quantidadedeItens = function(nome){
+const quantidadedeItens = function(nome){ // Procurando quantos nomes existem de nomes de itens
     let cont = 0
  listaDeNome.forEach(function(item){
 
@@ -163,6 +167,9 @@ const quantidadedeItens = function(nome){
  })
     return cont 
 }
+
+
+
 
 
 
@@ -180,4 +187,6 @@ console.table(listaDeNome)*/
 
 //console.log(vereficarItem('Maria'))
 
-console.log(quantidadedeItens('Jose'))
+//console.log(quantidadedeItens('Jose'))
+
+manipularDados()
