@@ -65,7 +65,7 @@ const cadastroDeProdutos = function () {
       id: 1,
       nome: "monitor",
       descricao: "27 polegadas",
-      marca: marcas[1].modelo,
+      marca: [marcas[1].modelo],
       qtd: 20,
       cor: [cores[4], cores[1]],
       valor: 800.5,
@@ -74,7 +74,7 @@ const cadastroDeProdutos = function () {
       id: 2,
       nome: "Teclado",
       descricao: "Teclado Mecânico",
-      marca: marcas[5].modelo,
+      marca: [marcas[5].modelo],
       qtd: 200,
       cor: cores,
       valor: 400.5,
@@ -83,27 +83,29 @@ const cadastroDeProdutos = function () {
       id: 3,
       nome: "Mouse Sem Fio",
       descricao: "Mouser Sem fio",
-      marca: [
-              marcas[0].modelo,
-              marcas[1].modelo,
-              marcas[5].modelo], // 0,1,5
+      marca: [marcas[0].modelo, marcas[1].modelo, marcas[5].modelo], // 0,1,5
       qtd: 200,
-      cor: [
-
-               cores[0],
-               cores[1],
-               cores[4]
-      ],
+      cor: [cores[0], cores[1], cores[4]],
       valor: 80.5,
     },
   ];
-
 
   /*produtos[0].cor.forEach(function (nomeCOR) {
     console.log("A COR DO PRODUTO É: " + nomeCOR.cor);
   });*/
 
-  console.log(produtos)
+  console.log (produtos.length)
+
+  for( let i = 0;  i <produtos.length; i++){
+
+    console.log(produtos[0].nome)
+
+
+  }
+
 };
+
+    
+
 
 cadastroDeProdutos();
