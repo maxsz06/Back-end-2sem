@@ -1,5 +1,5 @@
 /***************************************************
- * Objetivo: Manipuar dados utilizando array e Json
+ * Objetivo: Manipuar dados utilizando array
  * Data 05/03/2026
  * Autor: Max
  * Versão: 1.0
@@ -26,7 +26,8 @@
  */
 
 //Formas de criar um ARRAY
-const listaDeNome = ['Jose', 'Maria', 'Joao', 'Andre', 'Alex'] // Ja Atribuindo os valores dentro dele
+const listaDeNomes= ['Jose', 'Maria', 'Joao', 'Andre', 'Alex', 'Carlos', 'Ana','Bruna','Jake']
+const listaDeNome = ['Jose', 'Maria', 'Joao', 'Andre', 'Alex', 'Carlos', 'Ana','Bruna','Jake','Jose','Jose da Silva'] // Ja Atribuindo os valores dentro dele
 const listaDeClientes = []   // Atribuindo valores conforme o tempo
 const listaDeFornecedores = []
 
@@ -92,7 +93,7 @@ const exibirDados = function () {
 
     console.log(listaDeNome.length)  // Para saber quantas entidades tem dentro de um
 }
-const manipularDados = function(){
+const manipularDados = function(){ 
     //Adicionando Valores novos no array através de indices
     listaDeClientes[0]= 'Jose da Silva'
     listaDeClientes[1]= 'Maria da Silva'
@@ -100,17 +101,83 @@ const manipularDados = function(){
     listaDeClientes[4]= 'Alex da Silva' 
     console.log(listaDeClientes)
 
-    //Permite adicionar novos valores no array sempre no final da lista
+    //Permite adicionar novos valores no array sempre no final da lista  'exemploArray.push('elementos do array')'
     listaDeFornecedores.push('Luiz da Silva')
     listaDeFornecedores.push('Zezinho da Silva')
     listaDeFornecedores.push('Huguinho da Silva')
     listaDeFornecedores.push('Luisinho da Silva','Andre da Silva', 'Carlos da Silva')
 
-    console.log(listaDeFornecedores)
+    console.table(listaDeFornecedores)
+
+    listaDeFornecedores.unshift('Ana Carolina') // Adicionando Um novo elemento no começo do array, sempre emppurando os argumentos dentro
+    console.table(listaDeFornecedores)
+
+    listaDeFornecedores.pop() // Permite remite remover elementos do Final da lista (Ultimo da lista)
+    console.table(listaDeFornecedores)
+
+    listaDeFornecedores.shift() //  Permite remite remover elementos do Inicio da lista (Primeiro da lista)
+    console.table(listaDeFornecedores)
+
+    listaDeFornecedores.splice(2,1) // Permite remover um elemento baseado no indice da lista
+    //splice(indice,qtd de elementos)
+    console.table(listaDeFornecedores)
+
+
+}
+
+
+const removerItem = function(nome){
+
+    //Retorna o indice de um elemento fazendo a busca pelo valor
+    //Se o indexof não encontrar o conteúdo ele devolve -1
+    let indice = listaDeNome.indexOf(nome)
+
+    if(indice != -1){
+        listaDeNome.splice(indice,1)
+            return true 
+    }else{
+            return false
+    }
+    
+    listaDeNomes.splice(indice, 1)
+
+   /* for(indice in listaDeNome){
+        if(listaDeNome[indice]== nome){
+            listaDeNome.splice(indice,1)
+        }
+    }*/
+}
+
+const vereficarItem = function(nome){
+ // verefica a existencia de um conteudo de uma lista (true/false)
+ return listaDeNome.includes(nome)
+    
+}
+
+const quantidadedeItens = function(nome){
+    let cont = 0
+ listaDeNome.forEach(function(item){
+
+    if (String(item).toUpperCase() == String(nome).toLocaleUpperCase())
+        cont +=1
+ })
+    return cont 
 }
 
 
 
-
 //exibirDados()
-manipularDados()
+//manipularDados()
+//console.table (listaDeNome)
+
+/*let resposta = removerItem('Jose')
+ if (resposta)
+    console.log('Item removido com sucesso.')
+else
+    console.log('Nome não encontrado para ser Removido')
+
+console.table(listaDeNome)*/
+
+//console.log(vereficarItem('Maria'))
+
+console.log(quantidadedeItens('Jose'))
