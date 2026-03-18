@@ -81,7 +81,7 @@ const cadastroDeProdutos = function () {
     },
     {
       id: 3,
-      nome: "Mouse Sem Fio",
+      nome: "mouse",
       descricao: "Mouser Sem fio",
       marca: [marcas[0].modelo, marcas[1].modelo, marcas[5].modelo], // 0,1,5
       qtd: 200,
@@ -110,6 +110,34 @@ const cadastroDeProdutos = function () {
       });
     });
   });
+
+  console.log("Pesquisa:NOME =================================");
+  //Pesquisando um produto pelo NOME
+  let nome = "Mouse";
+
+  produtos.forEach(function (itemProduto) {
+    if (String(itemProduto.nome).toUpperCase() == String(nome).toUpperCase()) {
+      console.log(itemProduto);
+    }
+  });
+
+  console.log("Pesquisa:COR ================================");
+  // Pesquisando um produto pela COR
+
+  let cor = "ciano"
+  let status = false
+
+  produtos.forEach(function(itemProduto){
+    itemProduto.cor.forEach(function(itemCor){
+      if(String(itemCor.cor).toUpperCase()== String(cor).toUpperCase()){
+        console.log(itemProduto)
+        status = true
+      }
+    })
+  })
+
+  if (!status)
+    console.log ('Item pesquisado não foi encontrado')
 };
 
 cadastroDeProdutos();
