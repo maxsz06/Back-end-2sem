@@ -96,12 +96,17 @@ const cadastroDeProdutos = function () {
 
   console.log (produtos.length)
 
-  for( let i = 0;  i <produtos.length; i++){
+  produtos.forEach(function(itemProduto){
+    console.log(`Produto ${itemProduto.nome}`)
 
-    console.log(produtos[0].nome)
+    itemProduto.cor.forEach(function(itemCor){
+      console.log(`     Cor:${itemCor.cor}`)
 
-
-  }
+      itemProduto.marca.forEach(function(itemMarca){
+        console.log(`Marca:${itemMarca}`)
+      })
+    })
+  })
 
 };
 
