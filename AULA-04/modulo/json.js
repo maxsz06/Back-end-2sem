@@ -94,23 +94,22 @@ const cadastroDeProdutos = function () {
     console.log("A COR DO PRODUTO É: " + nomeCOR.cor);
   });*/
 
-  console.log (produtos.length)
+  console.log(produtos);
 
-  produtos.forEach(function(itemProduto){
-    console.log(`Produto ${itemProduto.nome}`)
+  produtos.forEach(function (itemProduto) {
+    //!percorre o objeto de produto para trazer os dados de cada produto
+    console.log(`Produto: ${itemProduto.nome}`);
 
-    itemProduto.cor.forEach(function(itemCor){
-      console.log(`     Cor:${itemCor.cor}`)
+    itemProduto.marca.forEach(function (itemMarca) {
+      // !percorre o objeto de marca dentro de cada produto, para trazer as marcas
+      console.log(` └──Marca: ${itemMarca}`);
 
-      itemProduto.marca.forEach(function(itemMarca){
-        console.log(`Marca:${itemMarca}`)
-      })
-    })
-  })
-
+      itemProduto.cor.forEach(function (itemCor) {
+        //! Percorre o objeto de cor dentro de dada produto, para trazer as cores
+        console.log("   └──Cor:" + itemCor.cor);
+      });
+    });
+  });
 };
-
-    
-
 
 cadastroDeProdutos();
