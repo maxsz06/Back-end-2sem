@@ -50,7 +50,10 @@ function getEstadosRegiao(infoRegiao) {
 
   for (let i = 0; i < qtdEstados; i++) {
     if (infoRegiao.toUpperCase() ==infoEstados.listaDeEstados.estados[i].regiao.toUpperCase()){
-      estados.push(infoEstados.listaDeEstados.estados[i].nome);
+      estados.push({
+        "uf": infoEstados.listaDeEstados.estados[i].sigla,
+        "descricao": infoEstados.listaDeEstados.estados[i].nome
+      })
     }
   }
   let resultado = {
@@ -61,4 +64,5 @@ function getEstadosRegiao(infoRegiao) {
   return resultado;
 }
 
-console.log(getEstadosRegiao("Nordeste"));
+
+console.log(getEstadosRegiao("SUL"));
