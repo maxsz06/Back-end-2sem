@@ -12,10 +12,10 @@ function getListadeEstados() {
 }
 
 function getDadosEstado(infoEstado) {
-
   for (let i = 0; i < qtdEstados; i++) {
     if (
-      infoEstado.toUpperCase() == infoEstados.listaDeEstados.estados[i].sigla) {
+      infoEstado.toUpperCase() == infoEstados.listaDeEstados.estados[i].sigla
+    ) {
       let estadoEncontado = {
         "sigla: ": infoEstados.listaDeEstados.estados[i].sigla,
         "Nome: ": infoEstados.listaDeEstados.estados[i].nome,
@@ -26,21 +26,39 @@ function getDadosEstado(infoEstado) {
       return estadoEncontado;
     }
   }
-  return false
+  return false;
 }
 
-function getCapitalEstado(infoEstado){
-
+function getCapitalEstado(infoEstado) {
   for (let i = 0; i < qtdEstados; i++) {
     if (
-      infoEstado == infoEstados.listaDeEstados.estados[i].sigla.toUpperCase()) {
+      infoEstado == infoEstados.listaDeEstados.estados[i].sigla.toUpperCase()
+    ) {
       let estadoEncontado = {
-        "uf": infoEstados.listaDeEstados.estados[i].sigla,
-        "descrição": infoEstados.listaDeEstados.estados[i].nome,
-        "Capital": infoEstados.listaDeEstados.estados[i].capital
+        uf: infoEstados.listaDeEstados.estados[i].sigla,
+        descrição: infoEstados.listaDeEstados.estados[i].nome,
+        Capital: infoEstados.listaDeEstados.estados[i].capital,
       };
       return estadoEncontado;
     }
   }
-  return false 
+  return false;
 }
+
+function getEstadosRegiao(infoRegiao) {
+  let estados = [];
+
+  for (let i = 0; i < qtdEstados; i++) {
+    if (infoRegiao.toUpperCase() ==infoEstados.listaDeEstados.estados[i].regiao.toUpperCase()){
+      estados.push(infoEstados.listaDeEstados.estados[i].nome);
+    }
+  }
+  let resultado = {
+    "regiao:": infoRegiao,
+    "estados:": estados
+  }
+
+  return resultado;
+}
+
+console.log(getEstadosRegiao("Nordeste"));
