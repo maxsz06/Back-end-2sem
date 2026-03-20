@@ -46,7 +46,7 @@ function getCapitalEstado(infoEstado) {
 }
 
 function getEstadosRegiao(infoRegiao) {
-  let estados = [];
+  let estados = []
 
   for (let i = 0; i < qtdEstados; i++) {
     if (infoRegiao.toUpperCase() ==infoEstados.listaDeEstados.estados[i].regiao.toUpperCase()){
@@ -64,5 +64,54 @@ function getEstadosRegiao(infoRegiao) {
   return resultado;
 }
 
+function getCapitalPais(){
+  let resultado = []
 
-console.log(getEstadosRegiao("SUL"));
+    for(let i = 0; i<qtdEstados; i++){
+      if(infoEstados.listaDeEstados.estados[i].capital_pais){
+        resultado.push({
+            
+           capital_atual: infoEstados.listaDeEstados.estados[i].capital_pais.capital,
+           uf: infoEstados.listaDeEstados.estados[i].sigla,
+           descricao: infoEstados.listaDeEstados.estados[i].nome,
+           capital: infoEstados.listaDeEstados.estados[i].capital,
+           regiao: infoEstados.listaDeEstados.estados[i].regiao,
+           ano_inicio: infoEstados.listaDeEstados.estados[i].capital_pais.ano_inicio,
+           ano_fim: infoEstados.listaDeEstados.estados[i].capital_pais.ano_fim,
+
+        })
+      }
+    }
+    return resultado
+
+}
+
+function getCidades(infoUF){
+
+  let cidades = []
+  let resultado= []
+
+
+  for (let i = 0; i < qtdEstados; i ++){ // Responsavel por percorrer todos os estados (27 Estados)
+    if((infoUF.toUpperCase() ==infoEstados.listaDeEstados.estados[i].sigla.toUpperCase())){ // Verefica se a sigla do estado bate com a entrada do usuario
+
+      let qtdCidades = Number(infoEstados.listaDeEstados.estados[i].cidades.length) // Pega a quantidade de cidades
+
+      for (let j = 0; j <qtdCidades; j++){ // percorre a lista de cidades dentro do estado 
+        cidades.push(infoEstados.listaDeEstados.estados[i].cidades[j].nome) // pega o array vazio e preen
+      }
+      
+          resultado.push({
+
+            uf: infoEstados.listaDeEstados.estados[i].sigla,
+            descricao: infoEstados.listaDeEstados.estados[i].nome,
+            quantidade_cidades: qtdCidades,
+            cidades: cidades
+       })
+    }
+  }
+  return resultado
+}
+
+console.log(getCidades('GH'))
+
