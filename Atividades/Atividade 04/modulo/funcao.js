@@ -1,25 +1,33 @@
-const infoEstados = require('./estados_cidades.js')
+const infoEstados = require("./estados_cidades.js");
 
+const qtdEstados = Number(infoEstados.listaDeEstados.estados.length);
 
-function getListadeEstados(){
+function getListadeEstados() {
+  let siglasUF = [];
 
-    let qtdEstados = Number(infoEstados.listaDeEstados.estados.length)
-    let siglasUF = []
-
-  for(let i = 0; i< qtdEstados; i++){
-    siglasUF.push(infoEstados.listaDeEstados.estados[i].sigla)
+  for (let i = 0; i < qtdEstados; i++) {
+    siglasUF.push(infoEstados.listaDeEstados.estados[i].sigla);
   }
-   console.log(siglasUF)
-   console.log (`quantidade: ${qtdEstados}`)
+  return { siglasUF, qtdEstados };
+}
+
+function getDadosEstado(infoEstado) {
+
+  for (let i = 0; i < qtdEstados; i++) {
+    if (
+      infoEstado.toUpperCase() == infoEstados.listaDeEstados.estados[i].sigla) {
+      let estadoEncontado = {
+        "sigla: ": infoEstados.listaDeEstados.estados[i].sigla,
+        "Nome: ": infoEstados.listaDeEstados.estados[i].nome,
+        "Capital:": infoEstados.listaDeEstados.estados[i].capital,
+        "Região:": infoEstados.listaDeEstados.estados[i].regiao,
+      };
+
+      return estadoEncontado;
+    }
+  }
+  return false
 }
 
 
-function getDadosEstado(){
-
-let estadoName = 'Sao Paulo'
-
- if(estadoName == infoEstados.listaDeEstados) 
-
-}
-
-getListadeEstados()
+console.log(getDadosEstado('AC'))
