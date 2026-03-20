@@ -29,5 +29,18 @@ function getDadosEstado(infoEstado) {
   return false
 }
 
+function getCapitalEstado(infoEstado){
 
-console.log(getDadosEstado('AC'))
+  for (let i = 0; i < qtdEstados; i++) {
+    if (
+      infoEstado == infoEstados.listaDeEstados.estados[i].sigla.toUpperCase()) {
+      let estadoEncontado = {
+        "uf": infoEstados.listaDeEstados.estados[i].sigla,
+        "descrição": infoEstados.listaDeEstados.estados[i].nome,
+        "Capital": infoEstados.listaDeEstados.estados[i].capital
+      };
+      return estadoEncontado;
+    }
+  }
+  return false 
+}
