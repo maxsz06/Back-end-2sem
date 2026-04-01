@@ -28,3 +28,44 @@ const corsOptions = { // Conjunto de permições a serem aplicadas no CORS da AP
 }
 
 app.use(cors(corsOptions)) // Configura as permissões da API através do CORS
+
+
+//Response -> Retornos da API
+//Request -> São chamadas de dados na API
+
+const estadosCidades=require('./modulo/manipulacao_.js')//Import do Arquivo de funções
+
+//Criando ENDPOINTS para API
+app.get('/v1/senai/estados',function(request, response){
+
+    let estados = estadosCidades.getListadeEstados() // chamar a função que retorna a lista de Estados
+
+    response.json(estados)
+    response.status(200)
+
+})
+
+app.get('/v1/senai/dados/estado/:uf',function(request,response){
+    let sigla = request.params.uf
+    let estado = estadosCidades.getDadosEstado(sigla)
+    response.json(estado)
+    response.status(200)
+})
+
+app.get('/v1/senai/capital/estado/:info',function(request,response){
+    let sigla = request.params.info
+    console.log(sigla)
+    let estado = estadosCidades.getCapitalEstado(sigla)
+    response.json(estado)
+    response.status(200)
+})
+
+app.get('/cidades',function(request,response){
+    response.json({"message": "Testando minha API de Cidades" })
+    response.status(200)
+})
+
+
+app.listen(8080, function(){ // Serve para inicializar a api para receber requisições 
+    console.log("API FUNCIONANDO E AGUARDANDO NOVAS REQUISIÇÕES ...")
+})

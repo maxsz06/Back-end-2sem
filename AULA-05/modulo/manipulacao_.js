@@ -17,6 +17,7 @@ function getListadeEstados(){
 function getDadosEstado(infoEstado){
 
     let estadoEncontado = {}
+    let status = false
 
     infoEstados.listaDeEstados.estados.forEach(function(estado){
         if(infoEstado.toUpperCase() == estado.sigla){
@@ -27,6 +28,7 @@ function getDadosEstado(infoEstado){
                 "capital": estado.capital,
                 "regiao": estado.regiao
             }
+            status = true
         }
     })
         return estadoEncontado
