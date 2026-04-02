@@ -5,24 +5,27 @@ const qtdEstados = Number(infoEstados.listaDeEstados.estados.length)
 
 function getListadeEstados(){
 
+    let status = false
+
     let siglasUF = []
 
     infoEstados.listaDeEstados.estados.forEach(function(estado){
         siglasUF.push(estado.sigla)
     })
+    status = true
     return {siglasUF,qtdEstados}
 
 }
 
-function getDadosEstado(infoEstado){
+function getDadosEstado(infoEstado) {
 
-    let estadoEncontado = {}
+    let estadoEncontrado = null  // null enquanto não achar
     let status = false
 
-    infoEstados.listaDeEstados.estados.forEach(function(estado){
-        if(infoEstado.toUpperCase() == estado.sigla){
+    infoEstados.listaDeEstados.estados.forEach(function(estado) {
+        if (infoEstado.toUpperCase() == estado.sigla) {
 
-            estadoEncontado.push = {
+            estadoEncontrado = {   // atribuição direta, sem .push()
                 "sigla": estado.sigla,
                 "nome": estado.nome,
                 "capital": estado.capital,
@@ -31,86 +34,104 @@ function getDadosEstado(infoEstado){
             status = true
         }
     })
-        return estadoEncontado
+
+    return { status, dados: estadoEncontrado }  // retorna os dois juntos
 }
 
-function getCapitalEstado(infoEstado){
+function getCapitalEstado(infoEstado) {
 
-    let estadoEncontado={}
+    let status = false
+    let estadoEncontrado = null  // corrigido: null em vez de {}
 
-    infoEstados.listaDeEstados.estados.forEach(function(estado){
-        if(infoEstado.toUpperCase()== estado.sigla){
-            estadoEncontado.push={
+    infoEstados.listaDeEstados.estados.forEach(function(estado) {
+        if (infoEstado.toUpperCase() == estado.sigla) {
+            estadoEncontrado = {          // corrigido: atribuição direta, sem .push
                 "uf": estado.sigla,
                 "descricao": estado.nome,
                 "capital": estado.capital,
             }
+            status = true               // corrigido: status dentro do if
         }
     })
-    return estadoEncontado
+
+    return { status, dados: estadoEncontrado }
 }
+
 
 function getRegiao(infoRegiao) {
 
     let estados = []
 
-    infoEstados.listaDeEstados.estados.forEach(function(estado){
-        if(infoRegiao.toUpperCase() == estado.regiao.toUpperCase()){
-          estados.push({
-            "uf": estado.sigla,
-            "descricao": estado.nome
-          })
+    infoEstados.listaDeEstados.estados.forEach(function(estado) {
+        if (infoRegiao.toUpperCase() == estado.regiao.toUpperCase()) {
+            estados.push({
+                "uf": estado.sigla,
+                "descricao": estado.nome
+            })
         }
     })
-    let resultado = {
+
+    let status = estados.length > 0   // true se achou pelo menos um estado
+
+    let dados = {
         "regiao": infoRegiao,
         "estados": estados
     }
-    return resultado
-  }
 
-function getCapitalPais(){
-    let resultado = []
-
-    listaDeEstados.estados.forEach(function(estado){
-        if (estado.capital_pais){
-        resultado.push({
-            "capital_atual": estado.capital_pais.capital, //! Este objeto tem guardado em estados especificos retorna (true/false)
-            "uf": estado.sigla,
-            "descricao:": estado.nome,
-            "capital": estado.capital,
-            "regiao": estado.regiao,
-            "ano_inicio": estado.capital_pais.ano_inicio, 
-            "ano_fim": estado.capital_pais.ano_fim
-        })
-        }
-    })
-    return resultado
+    return { status, dados }
 }
 
-function getCidades(infoUf){
 
-    let cidades=[]
+function getCapitalPais() {
+
     let resultado = []
 
-    infoEstados.listaDeEstados.estados.forEach(function(estado){ //! Percorre o array para procuarar a sigla digitada
-        if(infoUf.toUpperCase() == estado.sigla.toUpperCase()){  //! Se achar entra no fluxo 
-
-            let qtdCidades = Number(estado.cidades.length) //! Pega a quantidade de objetos que tem dentro da sigla "estado->cidades(quantidade)"
-
-           estado.cidades.forEach(function(nomeCidades){ //! Repetição para percorrer o objeto do array de cidades
-             cidades.push(nomeCidades.nome)   //! Pega todos os atributos do objeto e guarda no array vazio
+    infoEstados.listaDeEstados.estados.forEach(function(estado) {  // corrigido: infoEstados.listaDeEstados
+        if (estado.capital_pais) {
+            resultado.push({
+                "capital_atual": estado.capital_pais.capital,
+                "uf": estado.sigla,
+                "descricao": estado.nome,                          // corrigido: tinha "descricao:" com : a mais
+                "capital": estado.capital,
+                "regiao": estado.regiao,
+                "ano_inicio": estado.capital_pais.ano_inicio,
+                "ano_fim": estado.capital_pais.ano_fim
             })
-             resultado.push({  //! pega as informações que vão sair como resultado
-                 "uf": estado.sigla,
-                 "descricao": estado.nome,
-                 "quantidade_cidades": qtdCidades,
-                 "cidades": cidades //! este objeto vai mostrar todos os nomes por causa da estrutura de repetição que tem
-                })
         }
     })
 
-    return resultado
+    let status = resultado.length > 0
+
+    return { status, dados: resultado }
+}
+
+
+function getCidades(infoUf) {
+
+    let cidades = []
+    let resultado = null
+
+    infoEstados.listaDeEstados.estados.forEach(function(estado) {
+        if (infoUf.toUpperCase() == estado.sigla.toUpperCase()) {
+
+            let qtdCidades = Number(estado.cidades.length)
+
+            estado.cidades.forEach(function(nomeCidades) {
+                cidades.push(nomeCidades.nome)
+            })
+
+            resultado = {                // corrigido: atribuição direta em vez de .push
+                "uf": estado.sigla,
+                "descricao": estado.nome,
+                "quantidade_cidades": qtdCidades,
+                "cidades": cidades
+            }
+        }
+    })
+
+    let status = resultado !== null   // true se achou o estado
+
+    return { status, dados: resultado }
 }
 
 module.exports={

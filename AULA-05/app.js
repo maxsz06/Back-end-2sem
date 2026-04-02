@@ -48,21 +48,50 @@ app.get('/v1/senai/estados',function(request, response){
 app.get('/v1/senai/dados/estado/:uf',function(request,response){
     let sigla = request.params.uf
     let estado = estadosCidades.getDadosEstado(sigla)
-    response.json(estado)
-    response.status(200)
+
+    if(estado.status){
+        response.json(estado)
+        response.status(200)
+    }else{
+        response.json({"mesage": "Estado Não Encontrado"})
+        response.status(404)
+
+    }
 })
 
 app.get('/v1/senai/capital/estado/:info',function(request,response){
     let sigla = request.params.info
     console.log(sigla)
     let estado = estadosCidades.getCapitalEstado(sigla)
-    response.json(estado)
-    response.status(200)
+    
+    if(estado.status){
+        response.json(estado)
+        response.status(200)
+    }else{
+        response.json({"mesage": "Estado Não Encontrado"})
+        response.status(404)
+
+    }
 })
 
-app.get('/cidades',function(request,response){
-    response.json({"message": "Testando minha API de Cidades" })
-    response.status(200)
+app.get('/v1/senai/capital/estado/:uf',function(request,response){
+
+
+})
+
+app.get('/v1/senai/estados/capital/brasil',function(request,response){
+
+
+})
+
+app.get('/v1/senai/estados/regiao/:regiao',function(request,response){
+
+
+})
+
+app.get('/v1/senai/cidades/estado/:uf',function(request,response){
+
+
 })
 
 
