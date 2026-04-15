@@ -91,7 +91,7 @@ function getCapitalPais() {
             resultado.push({
                 "capital_atual": estado.capital_pais.capital,
                 "uf": estado.sigla,
-                "descricao": estado.nome,                          // corrigido: tinha "descricao:" com : a mais
+                "descricao": estado.nome,                         
                 "capital": estado.capital,
                 "regiao": estado.regiao,
                 "ano_inicio": estado.capital_pais.ano_inicio,
