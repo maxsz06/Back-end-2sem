@@ -39,4 +39,3 @@ insert into tbl_filme(
                         
 select * from tbl_filme;                         
 
-

@@ -28,8 +28,10 @@ app.use(cors(corsOptions)); // Configura as permissões da API através do CORS
 app.post('/v1/senai/locadora/filme', bodyParserJSON ,async function(request,response){
 
     // Recebe o conteúdo dentro do body da requisição
-    let dados = request.body
-    let result = await controlerFilme.inserirNovoFilme(dados)
+    let dados = request.body  
+    let contentType = request.headers['content-type'] // recebe o contenty type da requisição para validar se é um JSON
+
+    let result = await controlerFilme.inserirNovoFilme(dados,contentType)
 
     response.status(result.status_code)
     response.json(result)
