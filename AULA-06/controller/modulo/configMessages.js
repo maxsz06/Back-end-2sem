@@ -19,20 +19,25 @@ const DEFAULT_MESSAGE = {
 //mensagens de erro da API
 const ERROR_BAD_REQUEST              = {status:false, status_code:400,message:'Os Dados enviados na requisição não estão corretos!'}
 const ERROR_INTERNAL_SEVER_MODEL     = {status:false, status_code:500,message:'NÃO FOI POSSIVEL PROCESSAR A REQUISIÇÃO POR CONTA DE ERRO NA API [ERRO NA MODELAGEM DE DADOS]!'}
-const ERROR_CONTENT_TYPE     = {status:false, status_code:415,message:'NÃO FOI POSSIVEL PROCESSAR A REQUISIÇÃO, pois o formato de dados aceito pela API é somente JSON!'}
-const ERROR_INTERNAL_CONTROLER     = {status:false, status_code:500,message:'NÃO FOI POSSIVEL PROCESSAR A REQUISIÇÃO POR CONTA DE ERRO NA API [ERRO NA CONTROLER]!'}
+const ERROR_CONTENT_TYPE             = {status:false, status_code:415,message:'NÃO FOI POSSIVEL PROCESSAR A REQUISIÇÃO, pois o formato de dados aceito pela API é somente JSON!'}
+const ERROR_INTERNAL_CONTROLER       = {status:false, status_code:500,message:'NÃO FOI POSSIVEL PROCESSAR A REQUISIÇÃO POR CONTA DE ERRO NA API [ERRO NA CONTROLER]!'}
+const ERROR_NOT_FOUND                = {status:false, status_code:404,message:'NÃO FOI ENCONTRADO NENHUM DADO PARA RETORNO!'}
 
 
 
 
 
 //mensagens de sucesso da API 
-const SUCCESS_CREATED_ITEM = {status : true, status_code:201,message:'Registro inserido com um sucesso!'}
+const SUCCESS_CREATED_ITEM      = {status : true, status_code:201,message:'Registro inserido com um sucesso!'}
+const SUCCESS_RESPONSE                   = {status : true, status_code:200}
+
+
 
 module.exports = {
 
     DEFAULT_MESSAGE,
     ERROR_BAD_REQUEST,  SUCCESS_CREATED_ITEM,
     ERROR_INTERNAL_SEVER_MODEL, ERROR_CONTENT_TYPE,
-    ERROR_INTERNAL_CONTROLER
+    ERROR_INTERNAL_CONTROLER, ERROR_NOT_FOUND,
+    SUCCESS_RESPONSE
 }

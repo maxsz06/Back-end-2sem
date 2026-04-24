@@ -37,6 +37,21 @@ app.post('/v1/senai/locadora/filme', bodyParserJSON ,async function(request,resp
     response.json(result)
 })
 
+app.get('/v1/senai/locadora/filme', async function(request,response){  // Retorna todos os filmes de baixo pra cima 
+    let result = await controlerFilme.listarFilme()
+
+    response.status(result.status_code)
+    response.json(result)
+})
+// buscarFilme
+app.get('/v1/senai/locadora/filme/:id',async function(request,response){
+  let id = request.params.id
+  let result = await controlerFilme.buscarFilme(id)
+
+   response.status(result.status_code)
+   response.json(result)
+})
+
 
 //----------------------------------------------------------------------------------------------------------------------
 const PORT = process.env.PORT || 8080;

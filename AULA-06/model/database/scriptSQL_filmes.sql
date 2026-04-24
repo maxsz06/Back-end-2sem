@@ -37,5 +37,9 @@ insert into tbl_filme(
                         'https://br.web.img3.acsta.net/c_310_420/img/5b/ea/5bea1aeac3323aeaaf82449a34fafbbf.jpg'
                         );
                         
-select * from tbl_filme;                         
+select * from tbl_filme;   
+select * from tbl_filme order by id desc;     # Mostra a tabela de filmes de tras para frente ;   
+
+delete from tbl_filme where id > 0 ;
+delete from tbl_filme where id = 15;
 
