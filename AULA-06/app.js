@@ -43,14 +43,35 @@ app.get('/v1/senai/locadora/filme', async function(request,response){  // Retorn
     response.status(result.status_code)
     response.json(result)
 })
-// buscarFilme
-app.get('/v1/senai/locadora/filme/:id',async function(request,response){
+
+app.get('/v1/senai/locadora/filme/:id',async function(request,response){ // buscarFilme
   let id = request.params.id
   let result = await controlerFilme.buscarFilme(id)
 
    response.status(result.status_code)
    response.json(result)
 })
+
+app.put('/v1/senai/locadora/filme/:id', bodyParserJSON,async function(request,response) { // Atualizar filme pelo ID
+    let contentType = request.headers['content-type']  // recebe o content type da requisição
+    let id = request.params.id // recebe o ID do registro a ser atualizado
+    let dados = request.body // recebe os dados enviados no corpo da requisção
+
+    // chama a função de atualizar na controler e encaminha os dados, id e content-type
+    //obedecendo a ordem de criação na função da controler
+    let result = await controlerFilme.atualizarFilme(dados,id,contentType)
+
+    response.status(result.status_code)
+    response.json(result)
+  })
+
+  app.delete('/v1/senai/locadora/filme/delete/:id',async function(request,response) {
+    let id = request.params.id
+    let result = await controlerFilme.excluirFilme(id)
+  
+   response.status(result.status_code)
+    response.json(result)
+  })
 
 
 //----------------------------------------------------------------------------------------------------------------------
