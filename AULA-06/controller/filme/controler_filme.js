@@ -156,24 +156,35 @@ const buscarFilme = async function (id) {
 //Função para excluir um filme
 const excluirFilme = async function (id) {
 
-  let message = JSON.parse(JSON.stringify(config_message)) 
+  let message = JSON.parse(JSON.stringify(config_message));
+
   try {
-      let resultBuscarID = await buscarFilme(id)
-      let result = await filmeDAO.deleteFilme(id)
+    // Verifica se o filme existe no banco
+    let resultBuscarID = await buscarFilme(id);
 
-    if (result.length>0){
-      message.DEFAULT_MESSAGE.status = message.SUCCESS_DELETED_ITEM.status
-      message.DEFAULT_MESSAGE.status_code = message.SUCCESS_DELETED_ITEM.status_code
-      message.DEFAULT_MESSAGE.message = message.SUCCESS_DELETED_ITEM.message    
-      
-      return message.DEFAULT_MESSAGE //200
+    if (resultBuscarID && resultBuscarID.status_code === 200) {
 
-    }else{
-      return message.ERROR_INTERNAL_SEVER_MODEL //500 (Model)
+      let result = await filmeDAO.deleteFilme(id);
+
+      if (result) {
+        if (result.length > 0) {
+          message.DEFAULT_MESSAGE.status = message.SUCCESS_DELETED_ITEM.status;
+          message.DEFAULT_MESSAGE.status_code = message.SUCCESS_DELETED_ITEM.status_code;
+          message.DEFAULT_MESSAGE.message = message.SUCCESS_DELETED_ITEM.message;
+          return message.DEFAULT_MESSAGE; // 200
+        } else {
+          return message.ERROR_INTERNAL_SEVER_MODEL; // 500 (Model)
+        }
+      } else {
+        return message.ERROR_INTERNAL_SEVER_MODEL; // 500 (Model)
+      }
+
+    } else {
+      return message.ERROR_NOT_FOUND; // 404 - ID não encontrado
     }
 
   } catch (error) {
-    return message.ERROR_INTERNAL_CONTROLER //500 (controler)
+    return message.ERROR_INTERNAL_CONTROLER; // 500 (Controller)
   }
 
 };
